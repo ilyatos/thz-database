@@ -2,10 +2,24 @@
 
 namespace App;
 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * Class User
+ *
+ * @package App
+ *
+ * @property int $id
+ * @property string $first_name
+ * @property string $second_name
+ * @property string $email
+ * @property-read Carbon $created_at
+ * @property-read Carbon $updated_at
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -16,7 +30,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name',
+        'second_name',
+        'email',
+        'password'
     ];
 
     /**
@@ -25,15 +42,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token'
     ];
+    
+    public function workspace(): HasOne
+    {
+        return $this->hasOne(Workspace::class, 'author_id', 'id');
+    }
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function workspaces(): BelongsToMany
+    {
+        return $this->belongsToMany(Workspace::class, 'workspace_users');
+    }
 }
