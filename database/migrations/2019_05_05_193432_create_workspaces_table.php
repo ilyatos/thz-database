@@ -45,9 +45,14 @@ class CreateWorkspacesTable extends Migration
      */
     public function down()
     {
+        Schema::table('workspace_users', function (Blueprint $table) {
+            $table->dropForeign('workspace_users_workspace_id_foreign');
+            $table->dropForeign('workspace_users_user_id_foreign');
+            $table->dropIfExists();
+        });
+
         Schema::table('workspaces', function (Blueprint $table) {
-            $table->dropForeign('workspaces_workspace_id_foreign');
-            $table->dropForeign('users_user_id_foreign');
+            $table->dropForeign('workspaces_author_id_foreign');
             $table->dropIfExists();
         });
     }
