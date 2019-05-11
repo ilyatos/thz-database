@@ -19,6 +19,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $mode
  * @property int $temp
  * @property string $state
+ * @property array $frequency
+ * @property array $amplitude
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property-read User $user
@@ -32,6 +34,16 @@ class Spectrum extends Model
      * @var string
      */
     protected $table = 'spectra';
+
+    /**
+     * The attributes that should be cast to native types
+     *
+     * @var array
+     */
+    protected $casts = [
+        'frequency' => 'array',
+        'amplitude' => 'array',
+    ];
 
     /**
      * @return BelongsTo|User

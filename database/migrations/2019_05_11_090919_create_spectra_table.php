@@ -28,9 +28,11 @@ class CreateSpectraTable extends Migration
 
             $table->string('title');
             $table->string('system');
-            $table->string('mode');
-            $table->string('temp');
+            $table->enum('mode', ['transmission', 'reflection']);
+            $table->smallInteger('temp');
             $table->string('state');
+            $table->text('frequency');
+            $table->text('amplitude');
             $table->timestamps();
         });
     }
