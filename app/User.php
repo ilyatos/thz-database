@@ -3,7 +3,9 @@
 namespace App;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,15 +19,18 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string $first_name
  * @property string $second_name
  * @property string $email
- * @property-read Carbon $created_at
- * @property-read Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property-read Workspace $workspace
+ * @property-read Collection|Workspace[] $workspaces
+ * @property-read Collection|Spectrum[] $spectra
  */
 class User extends Authenticatable
 {
     use Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that are mass assignable
      *
      * @var array
      */
@@ -37,7 +42,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * The attributes that should be hidden for arrays
      *
      * @var array
      */
@@ -45,14 +50,28 @@ class User extends Authenticatable
         'password',
         'remember_token'
     ];
-    
+
+    /**
+     * @return HasOne|Workspace
+     */
     public function workspace(): HasOne
     {
         return $this->hasOne(Workspace::class, 'author_id', 'id');
     }
 
+    /**
+     * @return BelongsToMany|Workspace
+     */
     public function workspaces(): BelongsToMany
     {
         return $this->belongsToMany(Workspace::class, 'workspace_users');
+    }
+
+    /**
+     * @return HasMany|Spectrum
+     */
+    public function spectra(): HasMany
+    {
+        return $this->hasMany(Spectrum::class);
     }
 }
