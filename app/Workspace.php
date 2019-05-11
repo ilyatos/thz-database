@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -15,26 +16,33 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property int $id
  * @property string $title
  * @property int $author_id
- * @property-read Carbon $created_at
- * @property-read Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property-read User $author
+ * @property-read Collection|User[] $users
  */
 class Workspace extends Model
 {
     /**
-     * The attributes that are mass assignable.
+     * The attributes that are mass assignable
      *
      * @var array
      */
     protected $fillable = [
-        'title',
-        'author_id'
+        'title'
     ];
 
+    /**
+     * @return BelongsTo|User
+     */
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'author_id', 'id');
     }
 
+    /**
+     * @return BelongsToMany|User
+     */
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'workspace_users');

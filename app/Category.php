@@ -32,7 +32,7 @@ class Category extends Model
     /**
      * @return HasMany|Spectrum
      */
-    public function spectra()
+    public function spectra(): HasMany
     {
         return $this->hasMany(Spectrum::class);
     }
