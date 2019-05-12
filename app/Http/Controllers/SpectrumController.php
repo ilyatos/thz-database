@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Http\Requests\Spectrum\StoreRequest;
 use App\Spectrum;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -24,21 +26,25 @@ class SpectrumController extends Controller
      *
      * @return Renderable
      */
-    public function create()
+    public function create(): Renderable
     {
-        return view('spectrum/create');
+        return view('spectrum/create', [
+            'categories' => Category::orderBy('title')->get()
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param StoreRequest $request
      *
-     * @return Response
+     * @return Renderable
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        
+
+        return redirect('home');
     }
 
     /**
@@ -50,7 +56,7 @@ class SpectrumController extends Controller
      */
     public function show(Spectrum $spectrum)
     {
-        //
+
     }
 
     /**
