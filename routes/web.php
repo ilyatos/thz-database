@@ -15,9 +15,16 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
+    if (Auth::check()) {
+        return redirect('home');
+    }
+
     return view('welcome');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware('auth')
+    ->group(function () {
+        Route::get('home', 'HomeController@index')->name('home');
+    });
