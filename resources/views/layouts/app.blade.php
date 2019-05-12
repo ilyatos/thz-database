@@ -34,14 +34,14 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @auth
-                            <li class="nav-item active">
+                            <li class="nav-item {{ request()->is('home') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('home') }}">Database</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Add spectrum</a>
+                            <li class="nav-item {{ request()->is('spectra*') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('spectra.create') }}">Add spectrum</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">About</a>
+                            <li class="nav-item {{ request()->is('about') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('about') }}">About</a>
                             </li>
                         @endauth
                     </ul>

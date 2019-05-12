@@ -27,4 +27,6 @@ Auth::routes();
 Route::middleware('auth')
     ->group(function () {
         Route::get('home', 'HomeController@index')->name('home');
+        Route::get('about', 'HomeController@about')->name('about');
+        Route::resource('spectra', 'SpectrumController');
     });
