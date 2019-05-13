@@ -36,17 +36,7 @@ class Category extends Model
      */
     public function setTitleAttribute(string $title)
     {
-        $this->attributes['title'] = strtolower($title);
-    }
-
-    /**
-     * @param string $value
-     *
-     * @return void
-     */
-    public function getTitleAttribute($value)
-    {
-        return ucfirst($value);
+        $this->attributes['title'] = ucfirst(strtolower($title));
     }
 
     /**

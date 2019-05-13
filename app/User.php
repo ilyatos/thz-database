@@ -52,6 +52,22 @@ class User extends Authenticatable
     ];
 
     /**
+     * @param string $firstName
+     */
+    public function setFirstNameAttribute(string $firstName)
+    {
+        $this->attributes['first_name'] = ucfirst(strtolower($firstName));
+    }
+
+    /**
+     * @param string $secondName
+     */
+    public function setSecondNameAttribute(string $secondName)
+    {
+        $this->attributes['second_name'] = ucfirst(strtolower($secondName));
+    }
+
+    /**
      * @return HasOne|Workspace
      */
     public function workspace(): HasOne
