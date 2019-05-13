@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Contracts\Support\Renderable;
 
 class HomeController extends Controller
@@ -13,7 +14,9 @@ class HomeController extends Controller
      */
     public function index(): Renderable
     {
-        return view('home');
+        return view('home', [
+            'categories' => Category::orderBy('title')->get()
+        ]);
     }
 
     /**
