@@ -30,6 +30,26 @@ class Category extends Model
     ];
 
     /**
+     * @param string $title
+     *
+     * @return void
+     */
+    public function setTitleAttribute(string $title)
+    {
+        $this->attributes['title'] = strtolower($title);
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return void
+     */
+    public function getTitleAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    /**
      * @return HasMany|Spectrum
      */
     public function spectra(): HasMany
