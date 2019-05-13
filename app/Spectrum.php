@@ -36,6 +36,20 @@ class Spectrum extends Model
     protected $table = 'spectra';
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'system',
+        'mode',
+        'category_id',
+        'title',
+        'temp',
+        'state'
+    ];
+
+    /**
      * The attributes that should be cast to native types
      *
      * @var array
@@ -44,6 +58,22 @@ class Spectrum extends Model
         'frequency' => 'array',
         'amplitude' => 'array',
     ];
+
+    /**
+     * @param string $value
+     */
+    public function setTitleAttribute(string $value)
+    {
+        $this->attributes['title'] = ucfirst(strtolower($value));
+    }
+
+    /**
+     * @param string $value
+     */
+    public function setSystemAttribute(string $value)
+    {
+        $this->attributes['system'] = strtolower($value);
+    }
 
     /**
      * @return BelongsTo|User
