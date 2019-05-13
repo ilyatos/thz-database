@@ -11,6 +11,16 @@ use Illuminate\Http\Response;
 
 class SpectrumController extends Controller
 {
+    /** @var array Spectrum model fields */
+    private const SPECTRUM_FIELDS = [
+        'system',
+        'mode',
+        'category_id',
+        'title',
+        'temp',
+        'state'
+    ];
+
     /**
      * Display a listing of the resource
      *
@@ -42,7 +52,14 @@ class SpectrumController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        
+        $data = $request->all(self::SPECTRUM_FIELDS);
+
+        if ($newCategory = $request->input('new_category')) {
+            $category = Category::create(['title' => $newCategory]);
+            $data['category_id'] = $category->id;
+        }
+
+        $this->getCurrentUser()->spectra()->create($data);
 
         return redirect('home');
     }

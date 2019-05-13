@@ -30,7 +30,7 @@ class StoreRequest extends FormRequest
             'title' => 'required|max:255',
             'temp' => 'required|numeric',
             'state' => 'required|in:solid,liquid,gas,plasma',
-            'spectrum' => 'required|file|mimetypes:text/csv'
+            'spectrum' => 'required|file|mimes:csv,txt'
         ];
     }
 
