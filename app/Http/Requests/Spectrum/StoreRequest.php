@@ -26,12 +26,23 @@ class StoreRequest extends FormRequest
         return [
             'system' => 'required|string|max:255',
             'mode' => 'required|in:transmission,reflection',
-            'category_id' => 'numeric',
-            'new_category' => 'string|max:255',
+            'new_category' => 'string|nullable|max:255|required_if:category_id,0',
             'title' => 'required|max:255',
             'temp' => 'required|numeric',
             'state' => 'required|in:solid,liquid,gas,plasma',
-            'spectrum' => 'required|file|mimes:csv,txt'
+            'spectrum' => 'required|file|mimetypes:text/csv'
+        ];
+    }
+
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'new_category.required_if' => 'The new category field is required when category is not selected.'
         ];
     }
 }
