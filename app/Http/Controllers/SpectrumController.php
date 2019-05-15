@@ -6,6 +6,7 @@ use App\Category;
 use App\Http\Requests\Spectrum\StoreRequest;
 use App\Spectrum;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -48,7 +49,7 @@ class SpectrumController extends Controller
      *
      * @param StoreRequest $request
      *
-     * @return Renderable
+     * @return RedirectResponse
      */
     public function store(StoreRequest $request)
     {
@@ -58,6 +59,13 @@ class SpectrumController extends Controller
             $category = Category::create(['title' => $newCategory]);
             $data['category_id'] = $category->id;
         }
+
+        $parsedSpectrum = $this->parseSpectrum($request->file('spectrum')->getRealPath());
+
+        $data += [
+            'frequency' => serialize($parsedSpectrum['frequency']),
+            'amplitude' => serialize($parsedSpectrum['amplitude'])
+        ];
 
         $this->getCurrentUser()->spectra()->create($data);
 
@@ -111,5 +119,38 @@ class SpectrumController extends Controller
     public function destroy(Spectrum $spectrum)
     {
         //
+    }
+
+    /**
+     * @param string $path
+     *
+     * @return array
+     */
+    private function parseSpectrum(string $path): array
+    {
+        $frequency = [];
+        $amplitude = [];
+
+        ini_set('auto_detect_line_endings',true);
+
+        $handle = fopen($path, 'rb');
+
+        $strToFloat = function ($str) {
+            return (float) trim(str_replace(',', '.', $str));
+        };
+
+        while (($data = fgetcsv($handle)) !== false) {
+            $frequency[] = $strToFloat($data[0]);
+            $amplitude[] = $strToFloat($data[1]);
+        }
+
+        fclose($handle);
+
+        ini_set('auto_detect_line_endings',false);
+
+        return [
+            'frequency' => $frequency,
+            'amplitude' => $amplitude
+        ];
     }
 }

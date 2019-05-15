@@ -46,7 +46,9 @@ class Spectrum extends Model
         'category_id',
         'title',
         'temp',
-        'state'
+        'state',
+        'frequency',
+        'amplitude'
     ];
 
     /**
