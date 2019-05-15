@@ -29,4 +29,6 @@ Route::middleware('auth')
         Route::get('home', 'HomeController@index')->name('home');
         Route::get('about', 'HomeController@about')->name('about');
         Route::resource('spectra', 'SpectrumController');
+        Route::resource('categories', 'CategoryController');
+        Route::get('categories/{category}/spectra', 'CategoryController@spectra')->name('category.spectra');
     });
