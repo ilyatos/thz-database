@@ -20,6 +20,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $temp
  * @property string $state
  * @property array $frequency
+ * @property-read float $min_freq
+ * @property-read float $max_freq
  * @property array $amplitude
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -52,19 +54,9 @@ class Spectrum extends Model
     ];
 
     /**
-     * The attributes that should be cast to native types
-     *
-     * @var array
-     */
-    protected $casts = [
-        'frequency' => 'array',
-        'amplitude' => 'array',
-    ];
-
-    /**
      * @param string $value
      */
-    public function setTitleAttribute(string $value)
+    public function setTitleAttribute(string $value): void
     {
         $this->attributes['title'] = ucfirst(strtolower($value));
     }
@@ -72,9 +64,45 @@ class Spectrum extends Model
     /**
      * @param string $value
      */
-    public function setSystemAttribute(string $value)
+    public function setSystemAttribute(string $value): void
     {
         $this->attributes['system'] = strtolower($value);
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return array
+     */
+    public function getFrequencyAttribute(string $value): array
+    {
+        return unserialize($value, ['allowed_classes' => false]);
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return array
+     */
+    public function getAmplitudeAttribute(string $value): array
+    {
+        return unserialize($value, ['allowed_classes' => false]);
+    }
+
+    /**
+     * @return float
+     */
+    public function getMinFreqAttribute(): float
+    {
+        return $this->frequency[0];
+    }
+
+    /**
+     * @return float
+     */
+    public function getMaxFreqAttribute(): float
+    {
+        return $this->frequency[count($this->frequency) - 1];
     }
 
     /**
