@@ -39,7 +39,7 @@ class SpectrumController extends Controller
      */
     public function create(): Renderable
     {
-        return view('spectrum/create', [
+        return view('spectrum.create', [
             'categories' => Category::orderBy('title')->get()
         ]);
     }
@@ -81,7 +81,9 @@ class SpectrumController extends Controller
      */
     public function show(Spectrum $spectrum)
     {
-
+        return view('spectrum.show', [
+            'spectrum' => $spectrum->load('user', 'category'),
+        ]);
     }
 
     /**
