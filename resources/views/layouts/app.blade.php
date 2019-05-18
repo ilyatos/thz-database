@@ -37,7 +37,7 @@
                             <li class="nav-item {{ request()->is('home') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('home') }}">Database</a>
                             </li>
-                            <li class="nav-item {{ request()->is('spectra*') ? 'active' : '' }}">
+                            <li class="nav-item {{ request()->is('spectra/create') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('spectra.create') }}">Add spectrum</a>
                             </li>
                             <li class="nav-item {{ request()->is('about') ? 'active' : '' }}">
