@@ -17,7 +17,7 @@
                                 <label for="input_system" class="col-sm-3 col-form-label">Type</label>
                                 <div class="col-sm-9">
                                     <input id="input_system" class="form-control" name="system"
-                                           type="text" placeholder="TDS" required>
+                                           type="text" placeholder="TDS" value="{{ old('system') }}" required>
                                 </div>
                             </div>
                             @error('system')
@@ -40,7 +40,7 @@
                                 <label for="input_temp" class="col-sm-3 col-form-label">Temperature, K</label>
                                 <div class="col-sm-9">
                                     <input id="input_temp" class="form-control" name="temp"
-                                           type="number" placeholder="293" required>
+                                           type="number" placeholder="293" value="{{ old('temp') }}" required>
                                 </div>
                             </div>
                             <hr>
@@ -51,7 +51,7 @@
                                 <label for="input_title" class="col-sm-3 col-form-label">Title</label>
                                 <div class="col-sm-9">
                                     <input id="input_title" class="form-control" name="title"
-                                           type="text" placeholder="Rat skin" required>
+                                           type="text" placeholder="Rat skin" value="{{ old('title') }}" required>
                                 </div>
                             </div>
                             @error('title')
@@ -92,9 +92,11 @@
                                         <input id="input_spectrum" class="custom-file-input"
                                                name="spectrum" type="file" required>
                                         <label for="input_spectrum" class="custom-file-label">Choose file</label>
+                                        <small class="form-text text-muted">First column - FREQUENCY. Next column – AMPLITUDE</small>
                                     </div>
                                 </div>
                             </div>
+
                             @error('spectrum')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror

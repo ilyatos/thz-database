@@ -26,7 +26,7 @@ class StoreRequest extends FormRequest
         return [
             'system' => 'required|string|max:255',
             'mode' => 'required|in:transmission,reflection',
-            'new_category' => 'string|nullable|max:255|required_if:category_id,0',
+            'new_category' => 'unique:categories,title|string|nullable|max:255|required_if:category_id,0',
             'title' => 'required|max:255',
             'temp' => 'required|numeric',
             'state' => 'required|in:solid,liquid,gas,plasma',
@@ -42,7 +42,8 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'new_category.required_if' => 'The new category field is required when category is not selected.'
+            'new_category.required_if' => 'The new category field is required when category is not selected.',
+            'new_category.unique' => 'This category is already exists.'
         ];
     }
 }
