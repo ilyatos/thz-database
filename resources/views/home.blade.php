@@ -28,21 +28,26 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row scrollable">
-                    @if(isset($spectra))
-                        @foreach($spectra as $spectrum)
-                            <div class="col-3 m-0 p-2">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $spectrum->title }}</h5>
-                                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                        <a href="#" class="btn btn-primary">Investigate</a>
-                                    </div>
+                        @if(isset($spectra))
+                            @foreach($spectra as $spectrum)
+                                <div class="col-3 m-0 p-2">
+                                    <a href="{{ route('spectra.show', ['spectrum' => $spectrum->id]) }}" class="custom-card">
+                                        <div class="card card-hover">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ $spectrum->title }}</h5>
+                                                <p class="card-text">
+                                                    <b>State:</b> {{ $spectrum->state }}<br>
+                                                    <b>Mode:</b> {{ $spectrum->mode }}<br>
+                                                    <b>Range:</b> {{ $spectrum->min_freq }}...{{ $spectrum->max_freq }} THz
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </div>
-                            </div>
-                        @endforeach
-                    @else
-                        Select category! Simple.
-                    @endif
+                            @endforeach
+                        @else
+                            Select category! Simple.
+                        @endif
                     </div>
                 </div>
             </div>
