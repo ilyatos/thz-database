@@ -135,7 +135,7 @@ class SpectrumController extends Controller
 
         $handle = fopen($path, 'rb');
 
-        $strToFloat = function ($str) {
+        $strToFloat = static function (string $str) {
             return (float) trim(str_replace(',', '.', $str));
         };
 
