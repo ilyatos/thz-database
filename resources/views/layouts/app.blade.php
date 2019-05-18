@@ -58,15 +58,15 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item mr-4">
-                                <form class="form-inline">
-                                    <input class="form-control mr-sm-2" type="search" placeholder="Spectrum title" aria-label="Search">
-                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                                </form>
-                            </li>
+{{--                            <li class="nav-item mr-4">--}}
+{{--                                <form class="form-inline">--}}
+{{--                                    <input class="form-control mr-sm-2" type="search" placeholder="Spectrum title" aria-label="Search">--}}
+{{--                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>--}}
+{{--                                </form>--}}
+{{--                            </li>--}}
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ substr(Auth::user()->first_name, 0, 1) . '. ' .  Auth::user()->second_name }} <span class="caret"></span>
+                                    {{ Auth::user()->second_name . '. ' . substr(Auth::user()->first_name, 0, 1) }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
