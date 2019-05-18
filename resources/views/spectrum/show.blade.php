@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-3">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body pb-1">
                         <h4 class="card-title">{{ $spectrum->title }}</h4>
                         <p class="card-text">
                             <b>Category:</b> {{ $spectrum->category->title }}<br>
