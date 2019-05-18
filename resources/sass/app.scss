@@ -16,3 +16,13 @@
     max-height: 47em;
     overflow-y: auto;
 }
+
+a.custom-card,
+a.custom-card:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+div.card-hover:hover {
+    border: 1px solid #1d68a7;
+}
