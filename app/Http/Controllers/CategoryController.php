@@ -45,7 +45,7 @@ class CategoryController extends Controller
     {
         return view('home', [
             'categories' => Category::orderBy('title')->get(),
-            'spectra' => $category->spectra
+            'spectra' => $category->spectra()->orderBy('title')->get()
         ]);
     }
 
