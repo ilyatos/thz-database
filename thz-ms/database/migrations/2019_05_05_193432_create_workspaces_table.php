@@ -7,13 +7,11 @@ use Illuminate\Support\Facades\Schema;
 class CreateWorkspacesTable extends Migration
 {
     /**
-     * Run the migrations.
-     *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('workspaces', function (Blueprint $table) {
+        Schema::create('workspaces', static function (Blueprint $table) {
             $table->bigIncrements('id');
 
             $table->unsignedBigInteger('author_id');
@@ -25,7 +23,7 @@ class CreateWorkspacesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('workspace_users', function (Blueprint $table) {
+        Schema::create('workspace_users', static function (Blueprint $table) {
             $table->unsignedBigInteger('workspace_id');
             $table->foreign('workspace_id')
                 ->references('id')
@@ -39,19 +37,17 @@ class CreateWorkspacesTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
-     *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::table('workspace_users', function (Blueprint $table) {
+        Schema::table('workspace_users', static function (Blueprint $table) {
             $table->dropForeign('workspace_users_workspace_id_foreign');
             $table->dropForeign('workspace_users_user_id_foreign');
             $table->dropIfExists();
         });
 
-        Schema::table('workspaces', function (Blueprint $table) {
+        Schema::table('workspaces', static function (Blueprint $table) {
             $table->dropForeign('workspaces_author_id_foreign');
             $table->dropIfExists();
         });

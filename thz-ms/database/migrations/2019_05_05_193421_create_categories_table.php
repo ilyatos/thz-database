@@ -7,13 +7,11 @@ use Illuminate\Support\Facades\Schema;
 class CreateCategoriesTable extends Migration
 {
     /**
-     * Run the migrations.
-     *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('categories', static function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title')->unique();
             $table->timestamps();
@@ -21,11 +19,9 @@ class CreateCategoriesTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
-     *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('categories');
     }
