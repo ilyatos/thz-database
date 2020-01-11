@@ -1,0 +1,39 @@
+version: "3.7"
+services:
+  nginx:
+    build: ./docker/nginx
+    command: nginx -g "daemon off;"
+    volumes:
+      - ./thz-ms/public:/var/www/thz-ms/public
+    working_dir: /var/www/thz-ms/public
+    links:
+      - php
+    ports:
+      - "8001:80"
+  php:
+    build: ./docker/php
+    volumes:
+      - ./thz-ms:/var/www/thz-ms
+    working_dir: /var/www/thz-ms
+    command: php-fpm
+    links:
+      - db
+      - cache
+    ports:
+      - "9001:9000"
+    environment:
+      PHP_OPCACHE_ENABLE: 0
+      PHP_OPCACHE_VALIDATE_TIMESTAMPS: 1
+  db:
+    build: ./docker/mysql
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: thz
+      MYSQL_USER: thz
+      MYSQL_PASSWORD: secret
+  cache:
+    build: ./docker/cache
+    ports:
+      - "6380:6379"
