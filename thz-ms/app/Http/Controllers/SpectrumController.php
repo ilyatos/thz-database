@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use App\Http\Requests\Spectrum\StoreRequest;
-use App\Spectrum;
-use Illuminate\Contracts\Support\Renderable;
+use App\Models\Category;
+use App\Models\Spectrum;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class SpectrumController extends Controller
 {
@@ -23,21 +22,11 @@ class SpectrumController extends Controller
     ];
 
     /**
-     * Display a listing of the resource
-     *
-     * @return Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource
      *
-     * @return Renderable
+     * @return View
      */
-    public function create(): Renderable
+    public function create(): View
     {
         return view('spectrum.create', [
             'categories' => Category::orderBy('title')->get(),
@@ -45,13 +34,13 @@ class SpectrumController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage
      *
      * @param StoreRequest $request
      *
      * @return RedirectResponse
      */
-    public function store(StoreRequest $request)
+    public function store(StoreRequest $request): RedirectResponse
     {
         $data = $request->all(self::SPECTRUM_FIELDS);
 
@@ -73,54 +62,15 @@ class SpectrumController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
      * @param Spectrum $spectrum
      *
-     * @return Response
+     * @return View
      */
-    public function show(Spectrum $spectrum)
+    public function show(Spectrum $spectrum): View
     {
         return view('spectrum.show', [
             'spectrum' => $spectrum->load('user', 'category'),
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Spectrum $spectrum
-     *
-     * @return Response
-     */
-    public function edit(Spectrum $spectrum)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request  $request
-     * @param Spectrum $spectrum
-     *
-     * @return Response
-     */
-    public function update(Request $request, Spectrum $spectrum)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param Spectrum $spectrum
-     *
-     * @return Response
-     */
-    public function destroy(Spectrum $spectrum)
-    {
-        //
     }
 
     /**

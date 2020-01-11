@@ -1,4 +1,4 @@
-<?php /** @var \Illuminate\Database\Eloquent\Collection|\App\Category[] $categories*/ ?>
+<?php /** @var \Illuminate\Database\Eloquent\Collection|\App\Models\Category[] $categories*/ ?>
 
 @extends('layouts.app')
 

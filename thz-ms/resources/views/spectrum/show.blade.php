@@ -1,4 +1,4 @@
-<?php /** @var \App\Spectrum $spectrum*/?>
+<?php /** @var \App\Models\Spectrum $spectrum*/?>
 
 @extends('layouts.app')
 

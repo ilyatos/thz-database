@@ -1,7 +1,7 @@
 <?php
 /**
- * @var \Illuminate\Database\Eloquent\Collection|\App\Category[] $categories
- * @var \Illuminate\Database\Eloquent\Collection|\App\Spectrum[] $spectra
+ * @var \Illuminate\Database\Eloquent\Collection|\App\Models\Category[] $categories
+ * @var \Illuminate\Database\Eloquent\Collection|\App\Models\Spectrum[] $spectra
  */
 ?>
 
