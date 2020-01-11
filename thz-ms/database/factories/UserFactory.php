@@ -9,10 +9,9 @@ use Illuminate\Support\Str;
 /** @var Factory $factory */
 $factory->define(User::class, static function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'first_name' => $faker->firstName,
+        'second_name' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => Hash::make('secretpass'), // password
-        'remember_token' => Str::random(10),
+        'password' => Hash::make('secret')
     ];
 });
