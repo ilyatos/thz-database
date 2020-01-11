@@ -9,7 +9,7 @@
     ],
     "license": "proprietary",
     "require": {
-        "php": "^7.3",
+        "php": "^7.4",
         "ext-json": "*",
         "ext-redis": "*",
         "fideloper/proxy": "^4.0",
@@ -61,6 +61,6 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "cs-fix": "./vendor/bin/php-cs-fixer fix app config routes tests --config=.php_cs --verbose"
+        "cs-fix": "./vendor/bin/php-cs-fixer fix app config database routes tests --config=.php_cs --verbose"
     }
 }
