@@ -30,7 +30,7 @@ class StoreRequest extends FormRequest
             'title' => 'required|max:255',
             'temp' => 'required|numeric',
             'state' => 'required|in:solid,liquid,gas,plasma',
-            'spectrum' => 'required|file|mimes:csv,txt'
+            'spectrum' => 'required|file|mimes:csv,txt',
         ];
     }
 
@@ -43,7 +43,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'new_category.required_if' => 'The new category field is required when category is not selected.',
-            'new_category.unique' => 'This category is already exists.'
+            'new_category.unique' => 'This category is already exists.',
         ];
     }
 }

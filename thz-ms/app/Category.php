@@ -3,9 +3,9 @@
 namespace App;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class Category
@@ -26,7 +26,7 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
-        'title'
+        'title',
     ];
 
     /**

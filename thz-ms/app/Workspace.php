@@ -29,7 +29,7 @@ class Workspace extends Model
      * @var array
      */
     protected $fillable = [
-        'title'
+        'title',
     ];
 
     /**

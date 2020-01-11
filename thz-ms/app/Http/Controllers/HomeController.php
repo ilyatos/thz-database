@@ -15,7 +15,7 @@ class HomeController extends Controller
     public function index(): Renderable
     {
         return view('home', [
-            'categories' => Category::orderBy('title')->get()
+            'categories' => Category::orderBy('title')->get(),
         ]);
     }
 

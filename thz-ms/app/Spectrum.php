@@ -51,7 +51,7 @@ class Spectrum extends Model
         'temp',
         'state',
         'frequency',
-        'amplitude'
+        'amplitude',
     ];
 
     /**
@@ -114,7 +114,7 @@ class Spectrum extends Model
         $point = static function (float $x, float $y) {
             return [
                 'x' => $x,
-                'y' => $y
+                'y' => $y,
             ];
         };
 

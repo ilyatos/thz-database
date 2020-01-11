@@ -19,7 +19,7 @@ class SpectrumController extends Controller
         'category_id',
         'title',
         'temp',
-        'state'
+        'state',
     ];
 
     /**
@@ -40,7 +40,7 @@ class SpectrumController extends Controller
     public function create(): Renderable
     {
         return view('spectrum.create', [
-            'categories' => Category::orderBy('title')->get()
+            'categories' => Category::orderBy('title')->get(),
         ]);
     }
 
@@ -64,7 +64,7 @@ class SpectrumController extends Controller
 
         $data += [
             'frequency' => serialize($parsedSpectrum['frequency']),
-            'amplitude' => serialize($parsedSpectrum['amplitude'])
+            'amplitude' => serialize($parsedSpectrum['amplitude']),
         ];
 
         $this->getCurrentUser()->spectra()->create($data);
@@ -101,8 +101,8 @@ class SpectrumController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param Spectrum  $spectrum
+     * @param Request  $request
+     * @param Spectrum $spectrum
      *
      * @return Response
      */
@@ -133,7 +133,7 @@ class SpectrumController extends Controller
         $frequency = [];
         $amplitude = [];
 
-        ini_set('auto_detect_line_endings',true);
+        ini_set('auto_detect_line_endings', true);
 
         $handle = fopen($path, 'rb');
 
@@ -148,11 +148,11 @@ class SpectrumController extends Controller
 
         fclose($handle);
 
-        ini_set('auto_detect_line_endings',false);
+        ini_set('auto_detect_line_endings', false);
 
         return [
             'frequency' => $frequency,
-            'amplitude' => $amplitude
+            'amplitude' => $amplitude,
         ];
     }
 }
