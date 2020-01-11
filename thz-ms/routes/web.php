@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', static function () {
     if (Auth::check()) {
         return redirect('home');
     }
@@ -25,11 +25,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware('auth')
-    ->group(function () {
+    ->group(static function () {
         Route::get('home', 'HomeController@index')->name('home');
         Route::get('about', 'HomeController@about')->name('about');
         Route::resource('spectra', 'SpectrumController')->parameters([
-            'spectra' => 'spectrum'
+            'spectra' => 'spectrum',
         ]);
         Route::resource('categories', 'CategoryController');
         Route::get('categories/{category}/spectra', 'CategoryController@spectra')->name('category.spectra');

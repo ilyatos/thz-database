@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * Class Spectrum
  *
- * @package App
+ * @package App\Models
  *
  * @property int $id
  * @property-read int $user_id
@@ -51,7 +51,7 @@ class Spectrum extends Model
         'temp',
         'state',
         'frequency',
-        'amplitude'
+        'amplitude',
     ];
 
     /**
@@ -114,7 +114,7 @@ class Spectrum extends Model
         $point = static function (float $x, float $y) {
             return [
                 'x' => $x,
-                'y' => $y
+                'y' => $y,
             ];
         };
 

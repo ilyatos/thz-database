@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 /**
  * Class Workspace
  *
- * @package App
+ * @package App\Models
  *
  * @property int $id
  * @property string $title
@@ -29,7 +29,7 @@ class Workspace extends Model
      * @var array
      */
     protected $fillable = [
-        'title'
+        'title',
     ];
 
     /**

@@ -2,27 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use Illuminate\Contracts\Support\Renderable;
+use App\Models\Category;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
     /**
-     * Show the application dashboard.
+     * Show the application dashboard
      *
-     * @return Renderable
+     * @return View
      */
-    public function index(): Renderable
+    public function index(): View
     {
         return view('home', [
-            'categories' => Category::orderBy('title')->get()
+            'categories' => Category::orderBy('title')->get(),
         ]);
     }
 
     /**
-     * @return Renderable
+     * @return View
      */
-    public function about(): Renderable
+    public function about(): View
     {
         return view('about');
     }
