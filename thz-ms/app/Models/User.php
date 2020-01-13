@@ -18,6 +18,7 @@ use Illuminate\Notifications\Notifiable;
  * @property int $id
  * @property string $first_name
  * @property string $second_name
+ * @property-read string $short_full_name
  * @property string $email
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -52,17 +53,29 @@ class User extends Authenticatable
     ];
 
     /**
-     * @param string $firstName
+     * @return string
      */
-    public function setFirstNameAttribute(string $firstName)
+    public function getShortFullNameAttribute(): string
+    {
+        return sprintf('%s %s.', $this->first_name, $this->second_name[0]);
+    }
+
+    /**
+     * @param string $firstName
+     *
+     * @return void
+     */
+    public function setFirstNameAttribute(string $firstName): void
     {
         $this->attributes['first_name'] = ucfirst(strtolower($firstName));
     }
 
     /**
      * @param string $secondName
+     *
+     * @return void
      */
-    public function setSecondNameAttribute(string $secondName)
+    public function setSecondNameAttribute(string $secondName): void
     {
         $this->attributes['second_name'] = ucfirst(strtolower($secondName));
     }
