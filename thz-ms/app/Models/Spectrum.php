@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $mode
  * @property int $temp
  * @property string $state
- * @property-read string $points
+ * @property-read array $points
  * @property array $frequency
  * @property-read float $min_freq
  * @property-read float $max_freq
@@ -107,9 +107,9 @@ class Spectrum extends Model
     }
 
     /**
-     * @return string
+     * @return array
      */
-    public function getPointsAttribute(): string
+    public function getPointsAttribute(): array
     {
         $point = static function (float $x, float $y) {
             return [
@@ -120,12 +120,11 @@ class Spectrum extends Model
 
         $points = [];
         $numberOfPoints = count($this->frequency);
-
         for ($i = 0; $i < $numberOfPoints; $i++) {
             $points[] = $point($this->frequency[$i], $this->amplitude[$i]);
         }
 
-        return json_encode($points);
+        return $points;
     }
 
     /**
