@@ -13,10 +13,10 @@ Well, here are the reasons:
 If you want to become part of the future, just read further.
 ### Build it, run it, do it!
 Make sure that you have installed Docker and `docker-compose`, then follow these steps:
-1. Change directory to `thz-ms` and rename *.env.dev* to *.env*;
-2. Go to root, rename *docker-compose.dev.yml* to *docker-compose.yml*;
+1. Change directory to `thz-ms` and rename **.env.dev** to **.env**;
+2. Go to project root, rename **docker-compose.dev.yml** to **docker-compose.yml**;
 3. Run command `docker-compose up --build` to run project containers;
-4. After a successful building execute `docker exec -it thz-db_php_1 sh` and you will get PHP container shell;
-5. Execute `composer install` and then `php artisan migrate --seed` to make the backend alive;
+4. After a successful building, execute `docker exec -it thz-db_php_1 sh` and you will get PHP container shell;
+5. Execute `composer install` and after that `php artisan migrate --seed` to make the backend alive;
 6. Outside of container in **thz-ms** folder `run yarn install && yarn run development` to build the frontend;
 7. Feel free to add beautiful code!
