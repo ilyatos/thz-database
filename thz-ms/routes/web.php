@@ -19,7 +19,7 @@ Route::get('/', static function () {
         return redirect('home');
     }
 
-    return view('welcome');
+    return view('landing');
 });
 
 Auth::routes();

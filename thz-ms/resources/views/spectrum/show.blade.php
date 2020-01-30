@@ -35,12 +35,12 @@
 @push('js')
     <script>
         window.onload = () => {
-            let ctx = document.getElementById('spectrumChart');
-            let scatterChart = new Chart(ctx, {
+            const ctx = document.getElementById('spectrumChart');
+            new Chart(ctx, {
                 type: 'line',
                 data: {
                     datasets: [{
-                        data: {!! $spectrum->points !!},
+                        data: @json($spectrum->points),
                         fill: false,
                     }]
                 },
