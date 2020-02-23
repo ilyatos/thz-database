@@ -51,10 +51,7 @@ class SpectrumController extends Controller
 
         $parsedSpectrum = $this->parseSpectrum($request->file('spectrum')->getRealPath());
 
-        $data += [
-            'frequency' => serialize($parsedSpectrum['frequency']),
-            'amplitude' => serialize($parsedSpectrum['amplitude']),
-        ];
+        $data['data'] = $parsedSpectrum;
 
         $this->getCurrentUser()->spectra()->create($data);
 
@@ -74,15 +71,14 @@ class SpectrumController extends Controller
     }
 
     /**
+     * Get JSON representation of data
+     *
      * @param string $path
      *
-     * @return array
+     * @return string
      */
-    private function parseSpectrum(string $path): array
+    private function parseSpectrum(string $path): string
     {
-        $frequency = [];
-        $amplitude = [];
-
         ini_set('auto_detect_line_endings', true);
 
         $handle = fopen($path, 'rb');
@@ -91,18 +87,19 @@ class SpectrumController extends Controller
             return (float) trim(str_replace(',', '.', $str));
         };
 
+        $points = [];
+
         while (($data = fgetcsv($handle)) !== false) {
-            $frequency[] = $strToFloat($data[0]);
-            $amplitude[] = $strToFloat($data[1]);
+            $points[] = [
+                'x' => $strToFloat($data[0]),
+                'y' => $strToFloat($data[1]),
+            ];
         }
 
         fclose($handle);
 
         ini_set('auto_detect_line_endings', false);
 
-        return [
-            'frequency' => $frequency,
-            'amplitude' => $amplitude,
-        ];
+        return json_encode($points, JSON_THROW_ON_ERROR);
     }
 }
