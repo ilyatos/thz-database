@@ -17,7 +17,6 @@
                             <hr>
                             <b>System:</b> {{ $spectrum->system }}<br>
                             <b>Mode:</b> {{ $spectrum->mode }}<br>
-                            <b>Range:</b> {{ $spectrum->min_freq }}...{{ $spectrum->max_freq }} THz
                         </p>
                     </div>
                     <div class="card-footer py-1 text-muted">
@@ -40,7 +39,7 @@
                 type: 'line',
                 data: {
                     datasets: [{
-                        data: @json($spectrum->points),
+                        data: {!! $spectrum->data !!},
                         fill: false,
                     }]
                 },
