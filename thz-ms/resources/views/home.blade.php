@@ -38,7 +38,6 @@
                                                 <p class="card-text">
                                                     <b>State:</b> {{ $spectrum->state }}<br>
                                                     <b>Mode:</b> {{ $spectrum->mode }}<br>
-                                                    <b>Range:</b> {{ $spectrum->min_freq }}...{{ $spectrum->max_freq }} THz
                                                 </p>
                                             </div>
                                         </div>
@@ -52,21 +51,6 @@
                 </div>
             </div>
         </div>
-{{--        <div class="col col-md-2">--}}
-{{--            <div class="card">--}}
-{{--                <div class="card-header">Workspaces</div>--}}
-
-{{--                <div class="card-body">--}}
-{{--                    @if (session('status'))--}}
-{{--                        <div class="alert alert-success" role="alert">--}}
-{{--                            {{ session('status') }}--}}
-{{--                        </div>--}}
-{{--                    @endif--}}
-
-{{--                    You are logged in!--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
     </div>
 </div>
 @endsection
