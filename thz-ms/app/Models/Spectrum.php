@@ -19,11 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $mode
  * @property int $temp
  * @property string $state
- * @property-read array $points
- * @property array $frequency
- * @property-read float $min_freq
- * @property-read float $max_freq
- * @property array $amplitude
+ * @property string $data
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property-read User $user
@@ -50,8 +46,7 @@ class Spectrum extends Model
         'title',
         'temp',
         'state',
-        'frequency',
-        'amplitude',
+        'data',
     ];
 
     /**
@@ -68,63 +63,6 @@ class Spectrum extends Model
     public function setSystemAttribute(string $value): void
     {
         $this->attributes['system'] = strtolower($value);
-    }
-
-    /**
-     * @param string $value
-     *
-     * @return array
-     */
-    public function getFrequencyAttribute(string $value): array
-    {
-        return unserialize($value, ['allowed_classes' => false]);
-    }
-
-    /**
-     * @param string $value
-     *
-     * @return array
-     */
-    public function getAmplitudeAttribute(string $value): array
-    {
-        return unserialize($value, ['allowed_classes' => false]);
-    }
-
-    /**
-     * @return float
-     */
-    public function getMinFreqAttribute(): float
-    {
-        return $this->frequency[0];
-    }
-
-    /**
-     * @return float
-     */
-    public function getMaxFreqAttribute(): float
-    {
-        return $this->frequency[count($this->frequency) - 1];
-    }
-
-    /**
-     * @return array
-     */
-    public function getPointsAttribute(): array
-    {
-        $point = static function (float $x, float $y) {
-            return [
-                'x' => $x,
-                'y' => $y,
-            ];
-        };
-
-        $points = [];
-        $numberOfPoints = count($this->frequency);
-        for ($i = 0; $i < $numberOfPoints; $i++) {
-            $points[] = $point($this->frequency[$i], $this->amplitude[$i]);
-        }
-
-        return $points;
     }
 
     /**
