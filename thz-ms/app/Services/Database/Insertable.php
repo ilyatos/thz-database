@@ -2,8 +2,12 @@
 
 namespace App\Services\Database;
 
+use Illuminate\Database\DatabaseManager;
+
 trait Insertable
 {
+    private DatabaseManager $db;
+
     /**
      * Insert data into the table
      *
