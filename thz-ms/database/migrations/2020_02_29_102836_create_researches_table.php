@@ -6,9 +6,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateResearchesTable extends Migration
 {
-    public const TABLE = 'users';
+    public const TABLE = 'researches';
 
     /**
      * @return void
@@ -17,11 +17,15 @@ class CreateUsersTable extends Migration
     {
         Schema::create(self::TABLE, static function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('first_name');
-            $table->string('second_name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on(CreateUsersTable::TABLE)
+                ->onDelete('restrict');
+
+            $table->string('name');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
