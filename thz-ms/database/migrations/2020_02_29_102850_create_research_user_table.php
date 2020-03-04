@@ -22,15 +22,15 @@ class CreateResearchUserTable extends Migration
             $table->foreign('research_id')
                 ->references('id')
                 ->on(CreateResearchesTable::TABLE)
-                ->onDelete('restrict');
+                ->onDelete('cascade');
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
                 ->references('id')
                 ->on(CreateUsersTable::TABLE)
-                ->onDelete('restrict');
+                ->onDelete('cascade');
 
-            $table->timestamp('created_at');
+            $table->timestamp('created_at')->nullable();
         });
     }
 

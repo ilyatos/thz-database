@@ -22,7 +22,7 @@ class CreateSamplesTable extends Migration
             $table->foreign('experiment_id')
                 ->references('id')
                 ->on(CreateExperimentsTable::TABLE)
-                ->onDelete('restrict');
+                ->onDelete('cascade');
 
             $table->unsignedTinyInteger('matter_state_id');
             $table->foreign('matter_state_id')
