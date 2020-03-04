@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -11,8 +11,8 @@ return array(
     |
     */
 
-    'filename'  => '_ide_helper',
-    'format'    => 'php',
+    'filename' => '_ide_helper',
+    'format' => 'php',
 
     'meta_filename' => '.phpstorm.meta.php',
 
@@ -78,7 +78,7 @@ return array(
     'include_helpers' => false,
 
     'helper_files' => [
-        base_path().'/vendor/laravel/framework/src/Illuminate/Support/helpers.php',
+        base_path() . '/vendor/laravel/framework/src/Illuminate/Support/helpers.php',
     ],
 
     /*
@@ -206,4 +206,4 @@ return array(
     */
     'include_class_docblocks' => false,
 
-);
+];
