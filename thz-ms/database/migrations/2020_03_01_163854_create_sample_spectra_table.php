@@ -16,9 +16,14 @@ class CreateSampleSpectraTable extends Migration
         Schema::create(self::TABLE, static function (Blueprint $table) {
             $table->bigIncrements('id');
 
+            $table->unsignedTinyInteger('measurement_mode_id');
+            $table->foreign('measurement_mode_id')
+                ->references('id')
+                ->on('measurement_modes')
+                ->onDelete('restrict');
+
             $table->unsignedTinyInteger('axis_name_id');
-            $table
-                ->foreign('axis_name_id')
+            $table->foreign('axis_name_id')
                 ->references('id')
                 ->on('axis_names')
                 ->onDelete('restrict');
