@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Services\Database\Insertable;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Migrations\Migration;
