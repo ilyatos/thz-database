@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Experiment extends Model
 {
@@ -29,5 +30,13 @@ class Experiment extends Model
     public function system(): BelongsTo
     {
         return $this->belongsTo(System::class);
+    }
+
+    /**
+     * @return HasOne|Environment
+     */
+    public function environment(): HasOne
+    {
+        return $this->hasOne(Environment::class);
     }
 }
