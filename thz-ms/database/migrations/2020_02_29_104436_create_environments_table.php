@@ -18,7 +18,7 @@ class CreateEnvironmentsTable extends Migration
         Schema::create(self::TABLE, static function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->unsignedBigInteger('experiment_id');
+            $table->unsignedBigInteger('experiment_id')->unique();
             $table->foreign('experiment_id')
                 ->references('id')
                 ->on(CreateExperimentsTable::TABLE)

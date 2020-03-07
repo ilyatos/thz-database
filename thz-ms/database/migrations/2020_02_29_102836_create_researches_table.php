@@ -18,8 +18,8 @@ class CreateResearchesTable extends Migration
         Schema::create(self::TABLE, static function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')
+            $table->unsignedBigInteger('creator_id');
+            $table->foreign('creator_id')
                 ->references('id')
                 ->on(CreateUsersTable::TABLE)
                 ->onDelete('restrict');

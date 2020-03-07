@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
 
 /**
@@ -20,11 +21,16 @@ use Illuminate\Notifications\Notifiable;
  * @property string $second_name
  * @property-read string $short_full_name
  * @property string $email
- * @property Carbon $created_at
- * @property Carbon $updated_at
- * @property-read Workspace $workspace
- * @property-read Collection|Workspace[] $workspaces
- * @property-read Collection|Spectrum[] $spectra
+ * @property string $password
+ * @property string|null $remember_token
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
+ * @property-read int|null $notifications_count
+ *
+ * @method static Builder|User newModelQuery()
+ * @method static Builder|User newQuery()
+ * @method static Builder|User query()
  */
 class User extends Authenticatable
 {
@@ -78,29 +84,5 @@ class User extends Authenticatable
     public function setSecondNameAttribute(string $secondName): void
     {
         $this->attributes['second_name'] = ucfirst(strtolower($secondName));
-    }
-
-    /**
-     * @return HasOne|Workspace
-     */
-    public function workspace(): HasOne
-    {
-        return $this->hasOne(Workspace::class, 'author_id', 'id');
-    }
-
-    /**
-     * @return BelongsToMany|Workspace
-     */
-    public function workspaces(): BelongsToMany
-    {
-        return $this->belongsToMany(Workspace::class, 'workspace_users');
-    }
-
-    /**
-     * @return HasMany|Spectrum
-     */
-    public function spectra(): HasMany
-    {
-        return $this->hasMany(Spectrum::class);
     }
 }

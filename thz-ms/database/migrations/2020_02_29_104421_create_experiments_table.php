@@ -18,23 +18,22 @@ class CreateExperimentsTable extends Migration
         Schema::create(self::TABLE, static function (Blueprint $table) {
             $table->bigIncrements('id');
 
-//            $table->unsignedBigInteger('research_id');
-//            $table
-//                ->foreign('research_id')
-//                ->references('id')
-//                ->on('researches')
-//                ->onDelete('restrict');
-
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')
+            $table->unsignedBigInteger('research_id')->nullable();
+            $table->foreign('research_id')
                 ->references('id')
-                ->on('users')
+                ->on(CreateResearchesTable::TABLE)
+                ->onDelete('set null');
+
+            $table->unsignedBigInteger('populator_id');
+            $table->foreign('populator_id')
+                ->references('id')
+                ->on(CreateUsersTable::TABLE)
                 ->onDelete('restrict');
 
             $table->unsignedBigInteger('system_id');
             $table->foreign('system_id')
                 ->references('id')
-                ->on('systems')
+                ->on(CreateSystemsTable::TABLE)
                 ->onDelete('restrict');
 
             $table->string('name');

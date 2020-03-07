@@ -21,7 +21,7 @@ class CreateSystemsTable extends Migration
             $table->unsignedSmallInteger('type_id');
             $table->foreign('type_id')
                 ->references('id')
-                ->on('system_types')
+                ->on(CreateSystemTypesTable::TABLE)
                 ->onDelete('restrict');
 
             $table->string('name');
