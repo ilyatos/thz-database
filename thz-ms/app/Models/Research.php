@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Research extends Model
 {
@@ -26,10 +26,10 @@ class Research extends Model
     }
 
     /**
-     * @return HasOne|Experiment
+     * @return HasMany|Experiment
      */
-    public function experiment(): HasOne
+    public function experiments(): HasMany
     {
-        return $this->hasOne(Experiment::class);
+        return $this->hasMany(Experiment::class);
     }
 }

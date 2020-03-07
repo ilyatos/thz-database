@@ -3,15 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class SystemType extends Model
 {
     /**
-     * @return HasOne|System
+     * @return HasMany|System
      */
-    public function system(): HasOne
+    public function systems(): HasMany
     {
-        return $this->hasOne(System::class);
+        return $this->hasMany(System::class);
     }
 }

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class System extends Model
 {
@@ -17,10 +17,10 @@ class System extends Model
     }
 
     /**
-     * @return HasOne|Experiment
+     * @return HasMany|Experiment
      */
-    public function experiment(): HasOne
+    public function experiments(): HasMany
     {
-        return $this->hasOne(Experiment::class);
+        return $this->hasMany(Experiment::class);
     }
 }
