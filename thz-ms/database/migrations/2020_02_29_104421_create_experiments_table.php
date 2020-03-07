@@ -21,19 +21,19 @@ class CreateExperimentsTable extends Migration
             $table->unsignedBigInteger('research_id')->nullable();
             $table->foreign('research_id')
                 ->references('id')
-                ->on('researches')
+                ->on(CreateResearchesTable::TABLE)
                 ->onDelete('set null');
 
             $table->unsignedBigInteger('populator_id');
             $table->foreign('populator_id')
                 ->references('id')
-                ->on('users')
+                ->on(CreateUsersTable::TABLE)
                 ->onDelete('restrict');
 
             $table->unsignedBigInteger('system_id');
             $table->foreign('system_id')
                 ->references('id')
-                ->on('systems')
+                ->on(CreateSystemsTable::TABLE)
                 ->onDelete('restrict');
 
             $table->string('name');
