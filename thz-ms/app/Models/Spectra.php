@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -26,7 +28,7 @@ class Spectra extends Model
     /**
      * @return BelongsTo|AxisName
      */
-    public function axisName(): BelongsTo
+    public function axisNames(): BelongsTo
     {
         return $this->belongsTo(AxisName::class);
     }

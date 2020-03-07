@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Experiment extends Model
@@ -38,5 +41,13 @@ class Experiment extends Model
     public function environment(): HasOne
     {
         return $this->hasOne(Environment::class);
+    }
+
+    /**
+     * @return HasMany|Sample
+     */
+    public function samples(): HasMany
+    {
+        return $this->hasMany(Sample::class);
     }
 }
