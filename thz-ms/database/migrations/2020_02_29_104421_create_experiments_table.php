@@ -24,8 +24,8 @@ class CreateExperimentsTable extends Migration
                 ->on('researches')
                 ->onDelete('set null');
 
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')
+            $table->unsignedBigInteger('populator_id');
+            $table->foreign('populator_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('restrict');
