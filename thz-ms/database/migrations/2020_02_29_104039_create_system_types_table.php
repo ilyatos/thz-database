@@ -2,26 +2,25 @@
 
 declare(strict_types=1);
 
-use App\Services\Database\Insertable;
-use Illuminate\Database\DatabaseManager;
+use App\Services\Database\DatabaseInserter;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class CreateSystemTypesTable extends Migration
 {
-    use Insertable;
-
     public const TABLE = 'system_types';
+
+    private DatabaseInserter $inserter;
 
     /**
      * CreateSystemTypesTable constructor
      *
-     * As far as migrations does not support a DI we have to use app() function to create instances
+     * We have to use app() function to create instances as far as migrations does not support a DI
      */
     public function __construct()
     {
-        $this->db = app(DatabaseManager::class);
+        $this->inserter = app(DatabaseInserter::class);
     }
 
     /**
@@ -37,7 +36,7 @@ class CreateSystemTypesTable extends Migration
             $table->timestamps();
         });
 
-        $this->insert(
+        $this->inserter->insertWithTimestamps(
             self::TABLE,
             [
                 ['name' => 'TDS'],
