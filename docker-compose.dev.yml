@@ -25,14 +25,13 @@ services:
       PHP_OPCACHE_ENABLE: 0
       PHP_OPCACHE_VALIDATE_TIMESTAMPS: 1
   db:
-    build: ./docker/mysql
+    build: ./docker/postgres
     ports:
-      - "3307:3306"
+      - "5432:5432"
     environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: thz
-      MYSQL_USER: thz
-      MYSQL_PASSWORD: secret
+      POSTGRES_DB: thz
+      POSTGRES_USER: thz
+      POSTGRES_PASSWORD: secret
   cache:
     build: ./docker/cache
     ports:
