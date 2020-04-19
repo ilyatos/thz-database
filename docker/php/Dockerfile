@@ -3,13 +3,14 @@ FROM php:7.4-fpm-alpine
 MAINTAINER Ilya Goryachev <ilyatos.gor@gmail.com>
 
 # Install Apline packages
-RUN apk add --update --no-cache libxml2-dev autoconf g++ make
+RUN apk add --update --no-cache libxml2-dev postgresql-dev autoconf g++ make
 
 # Install PHP extensions
 RUN docker-php-ext-install \
     bcmath \
     opcache \
-    pdo_mysql
+    pgsql \
+    pdo_pgsql
 
 COPY ./conf.d/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
