@@ -1,6 +1,6 @@
 <?php /** @var \Illuminate\Database\Eloquent\Collection|\App\Models\Category[] $categories*/ ?>
 
-@extends('layouts.app')
+@extends('web.app')
 
 @section('content')
     <div class="container">
@@ -8,7 +8,7 @@
             <div class="col-7">
                 <div class="card">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('spectra.store') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('experiments.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-1">
                                 <span style="font-size: 1.3em">System</span>
@@ -21,7 +21,7 @@
                                 </div>
                             </div>
                             @error('system')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                             <div class="form-group row">
                                 <label for="select_mode" class="col-sm-3 col-form-label">Measurement mode</label>
@@ -55,16 +55,16 @@
                                 </div>
                             </div>
                             @error('title')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                             <div class="form-group row">
                                 <label for="select_category" class="col-sm-3 col-form-label">Category</label>
                                 <div class="col-sm-4">
                                     <select id="select_category" class="custom-select" name="category_id">
                                         <option value="0" selected>Select category</option>
-                                        @foreach($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->title }}</option>
-                                        @endforeach
+{{--                                        @foreach($categories as $category)--}}
+{{--                                            <option value="{{ $category->id }}">{{ $category->title }}</option>--}}
+{{--                                        @endforeach--}}
                                     </select>
                                 </div>
                                 <label for="input_category" class="col-auto pl-0 col-form-label">or create</label>
@@ -72,7 +72,7 @@
                                        name="new_category" type="text" placeholder="Zinc">
                             </div>
                             @error('new_category')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                             <div class="form-group row">
                                 <label for="select_state" class="col-sm-3 col-form-label">State</label>
@@ -98,7 +98,7 @@
                             </div>
 
                             @error('spectrum')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                             <div class="form-group row">
                                 <div class="col-10">

@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Spectrum $spectrum*/?>
 
-@extends('layouts.app')
+@extends('web.app')
 
 @section('content')
     <div class="container">

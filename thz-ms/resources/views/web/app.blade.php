@@ -34,17 +34,6 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        @auth
-                            <li class="nav-item {{ request()->is('home') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ route('home') }}">Database</a>
-                            </li>
-                            <li class="nav-item {{ request()->is('spectra/create') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ route('spectra.create') }}">Add spectrum</a>
-                            </li>
-                            <li class="nav-item {{ request()->is('about') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ route('about') }}">About</a>
-                            </li>
-                        @endauth
                     </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -59,12 +48,9 @@
                                 </li>
                             @endif
                         @else
-{{--                            <li class="nav-item mr-4">--}}
-{{--                                <form class="form-inline">--}}
-{{--                                    <input class="form-control mr-sm-2" type="search" placeholder="Spectrum title" aria-label="Search">--}}
-{{--                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>--}}
-{{--                                </form>--}}
-{{--                            </li>--}}
+                            <li class="nav-item {{ request()->is('experiments/create') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('experiments.create') }}">Add an experiment</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->short_full_name }} <span class="caret"></span>
