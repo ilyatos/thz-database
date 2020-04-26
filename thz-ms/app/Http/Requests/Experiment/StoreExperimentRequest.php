@@ -8,7 +8,7 @@ class StoreExperimentRequest extends FormRequest
 {
     public function rules(): array
     {
-       return [
+        return [
            'system_id' => 'required|integer',
            'name' => 'required|alpha_dash',
            'description' => 'present',
