@@ -12,7 +12,7 @@ class Authenticate extends Middleware
      *
      * @param Request $request
      *
-     * @return string
+     * @return string|null
      */
     protected function redirectTo($request)
     {
