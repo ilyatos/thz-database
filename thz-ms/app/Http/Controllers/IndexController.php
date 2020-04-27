@@ -10,6 +10,6 @@ class IndexController extends Controller
 {
     public function __invoke(): Response
     {
-        return $this->response->view('app');
+        return $this->response->view('web.app');
     }
 }
