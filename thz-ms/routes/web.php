@@ -14,11 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'StorageController@index')->name('home');
+Auth::routes();
 
-//Auth::routes();
+Route::get('about', 'AboutController')->name('about');
 
-//Route::middleware('auth')
-//    ->group(static function () {
-//        Route::get('home', 'StorageController@index')->name('home');
-//    });
+Route::middleware('auth')
+    ->group(static function () {
+        Route::get('/', 'IndexController')->name('index');
+        Route::resource('experiments', 'ExperimentController');
+    });
