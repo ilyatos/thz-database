@@ -23,6 +23,7 @@ use Illuminate\Support\Carbon;
  * @property string $manufacturer
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property-read string $name_with_type
  * @property-read Collection|Experiment[] $experiments
  * @property-read int|null $experiments_count
  * @property-read User $user
@@ -34,6 +35,16 @@ use Illuminate\Support\Carbon;
  */
 class System extends Model
 {
+    public function setNameAttribute(string $name): void
+    {
+        $this->attributes['name'] = ucfirst(strtolower($name));
+    }
+
+    public function getNameWithTypeAttribute(): string
+    {
+        return sprintf('%s (%s)', $this->name, $this->type->name);
+    }
+
     /**
      * @return BelongsTo|User
      */
