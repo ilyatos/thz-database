@@ -18,7 +18,7 @@ services:
     command: php-fpm
     links:
       - db
-      - cache
+      - redis
     environment:
       PHP_OPCACHE_ENABLE: 0
       PHP_OPCACHE_VALIDATE_TIMESTAMPS: 1
@@ -32,7 +32,9 @@ services:
       POSTGRES_DB: thz
       POSTGRES_USER: thz
       POSTGRES_PASSWORD: secret
-  cache:
-    build: ./docker/cache
+  redis:
+    build: ./docker/redis
+    volumes:
+      - ./.redis:/data
     ports:
       - "6380:6379"

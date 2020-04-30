@@ -1,3 +1,4 @@
 .idea
 .postgres
+.redis
 docker-compose.yml
