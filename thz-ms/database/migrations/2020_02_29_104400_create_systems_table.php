@@ -18,6 +18,12 @@ class CreateSystemsTable extends Migration
         Schema::create(self::TABLE, static function (Blueprint $table) {
             $table->bigIncrements('id');
 
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on(CreateUsersTable::TABLE)
+                ->onDelete('cascade');
+
             $table->unsignedSmallInteger('type_id');
             $table->foreign('type_id')
                 ->references('id')

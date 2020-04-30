@@ -25,6 +25,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $updated_at
  * @property-read Collection|Experiment[] $experiments
  * @property-read int|null $experiments_count
+ * @property-read User $user
  * @property-read SystemType $type
  *
  * @method static Builder|System newModelQuery()
@@ -33,6 +34,14 @@ use Illuminate\Support\Carbon;
  */
 class System extends Model
 {
+    /**
+     * @return BelongsTo|User
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
     /**
      * @return BelongsTo|SystemType
      */

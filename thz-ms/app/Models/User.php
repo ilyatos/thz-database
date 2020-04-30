@@ -6,9 +6,9 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\DatabaseNotification;
-use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
 
 /**
@@ -25,8 +25,8 @@ use Illuminate\Notifications\Notifiable;
  * @property string|null $remember_token
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
- * @property-read int|null $notifications_count
+ * @property-read Collection|Experiment[] $experiments
+ * @property-read Collection|System[] $systems
  *
  * @method static Builder|User newModelQuery()
  * @method static Builder|User newQuery()
@@ -84,5 +84,21 @@ class User extends Authenticatable
     public function setSecondNameAttribute(string $secondName): void
     {
         $this->attributes['second_name'] = ucfirst(strtolower($secondName));
+    }
+
+    /**
+     * @return HasMany|Experiment
+     */
+    public function experiments(): HasMany
+    {
+        return $this->hasMany(Experiment::class);
+    }
+
+    /**
+     * @return HasMany|System
+     */
+    public function systems(): HasMany
+    {
+        return $this->hasMany(System::class);
     }
 }
