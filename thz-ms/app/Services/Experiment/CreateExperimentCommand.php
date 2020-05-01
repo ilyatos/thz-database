@@ -1,23 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services\Experiment;
 
 use App\Models\Experiment;
-use App\Models\System;
 use App\Models\User;
+use App\Repositories\SystemRepository;
 
 final class CreateExperimentCommand
 {
-    private System $system;
+    private SystemRepository $systemRepository;
 
-    public function __construct(System $system)
+    public function __construct(SystemRepository $systemRepository)
     {
-        $this->system = $system;
+        $this->systemRepository = $systemRepository;
     }
 
     public function create(User $user, CreateExperimentDto $dto): Experiment
     {
-        $this->system->findOrFail($dto->getSystemId());
+        $this->systemRepository->findOrFail($dto->getSystemId());
 
         $experiment = new Experiment();
         $experiment->system_id = $dto->getSystemId();

@@ -1,23 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services\System;
 
 use App\Models\System;
-use App\Models\SystemType;
 use App\Models\User;
+use App\Repositories\SystemTypeRepository;
 
 final class CreateSystemCommand
 {
-    private SystemType $systemType;
+    private SystemTypeRepository $systemTypeRepository;
 
-    public function __construct(SystemType $systemType)
+    public function __construct(SystemTypeRepository $systemTypeRepository)
     {
-        $this->systemType = $systemType;
+        $this->systemTypeRepository = $systemTypeRepository;
     }
 
     public function execute(User $user, CreateSystemDto $dto): System
     {
-        $this->systemType->findOrFail($dto->getTypeId());
+        $this->systemTypeRepository->findOrFail($dto->getTypeId());
 
         $system = new System();
         $system->type_id = $dto->getTypeId();
