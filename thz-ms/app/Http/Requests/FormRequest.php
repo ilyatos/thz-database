@@ -13,7 +13,7 @@ abstract class FormRequest extends BaseFormRequest
      *
      * @return bool
      */
-    public function authorize(): bool
+    final public function authorize(): bool
     {
         return true;
     }
