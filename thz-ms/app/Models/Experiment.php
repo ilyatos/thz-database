@@ -19,7 +19,7 @@ use Illuminate\Support\Carbon;
  *
  * @property int $id
  * @property int|null $research_id
- * @property int $populator_id
+ * @property int $user_id
  * @property int $system_id
  * @property string $name
  * @property string|null $description
@@ -51,7 +51,7 @@ class Experiment extends Model
      */
     public function populator(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'populator_id');
+        return $this->belongsTo(User::class);
     }
 
     /**

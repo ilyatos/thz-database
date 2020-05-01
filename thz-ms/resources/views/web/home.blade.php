@@ -5,7 +5,7 @@
  */
 ?>
 
-@extends('layouts.app')
+@extends('web.app')
 
 @section('content')
 <div class="container">

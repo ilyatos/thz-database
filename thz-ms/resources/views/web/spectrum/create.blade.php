@@ -1,6 +1,6 @@
 <?php /** @var \Illuminate\Database\Eloquent\Collection|\App\Models\Category[] $categories*/ ?>
 
-@extends('layouts.app')
+@extends('web.app')
 
 @section('content')
     <div class="container">

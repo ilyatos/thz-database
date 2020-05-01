@@ -2,24 +2,23 @@
 
 declare(strict_types=1);
 
-use App\Services\Database\Insertable;
-use Illuminate\Database\DatabaseManager;
+use App\Services\Database\DatabaseInserter;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class CreateMeasurementModesTable extends Migration
 {
-    use Insertable;
-
     public const TABLE = 'measurement_modes';
+
+    private DatabaseInserter $inserter;
 
     /**
      * CreateMeasurementModesTable constructor
      */
     public function __construct()
     {
-        $this->db = app(DatabaseManager::class);
+        $this->inserter = app(DatabaseInserter::class);
     }
 
     /**
@@ -33,7 +32,7 @@ class CreateMeasurementModesTable extends Migration
             $table->timestamps();
         });
 
-        $this->insert(
+        $this->inserter->insertWithTimestamps(
             self::TABLE,
             [
                 ['name' => 'reflection'],

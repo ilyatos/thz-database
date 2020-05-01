@@ -1,23 +1,34 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\ResponseFactory;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    use AuthorizesRequests;
+
+    protected Guard $auth;
+    protected ResponseFactory $response;
+
+    public function __construct(Guard $auth, ResponseFactory $response)
+    {
+        $this->auth = $auth;
+        $this->response = $response;
+    }
 
     /**
-     * @return User
+     * @return Authenticatable|User
      */
-    public function getCurrentUser(): User
+    protected function getUser(): User
     {
-        return Auth::user();
+        return $this->auth->user();
     }
 }
