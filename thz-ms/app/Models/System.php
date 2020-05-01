@@ -35,11 +35,6 @@ use Illuminate\Support\Carbon;
  */
 class System extends Model
 {
-    public function setNameAttribute(string $name): void
-    {
-        $this->attributes['name'] = ucfirst(strtolower($name));
-    }
-
     public function getNameWithTypeAttribute(): string
     {
         return sprintf('%s (%s)', $this->name, $this->type->name);
