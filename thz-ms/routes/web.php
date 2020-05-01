@@ -22,4 +22,5 @@ Route::middleware('auth')
     ->group(static function () {
         Route::get('/', 'IndexController')->name('index');
         Route::resource('experiments', 'ExperimentController');
+        Route::resource('systems', 'SystemController')->only('create', 'store');
     });
