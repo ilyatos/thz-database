@@ -37,7 +37,7 @@
 
                             <div class="form-group row">
                                 <label for="select_system" class="col-sm-3 col-form-label">System</label>
-                                <div class="col-sm-4">
+                                <div class="col-sm-5">
                                     <select id="select_system" class="custom-select" name="system_id" required>
                                         <option value="" disabled>select system</option>
                                         @foreach($systems as $system)
