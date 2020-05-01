@@ -41,7 +41,7 @@
                                     <select id="select_system" class="custom-select" name="system_id" required>
                                         <option value="" disabled>select system</option>
                                         @foreach($systems as $system)
-                                            <option value="{{ $system->id }}" {{ (int) old('system_id') === $system->id ? 'selected' : ''}}>
+                                            <option value="{{ $system->id }}" {{ $system->id === $predefinedSystemId ? 'selected' : ''}}>
                                                 {{ $system->name_with_type }}
                                             </option>
                                         @endforeach
