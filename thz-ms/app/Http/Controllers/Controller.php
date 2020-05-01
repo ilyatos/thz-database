@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -20,5 +22,13 @@ class Controller extends BaseController
     {
         $this->auth = $auth;
         $this->response = $response;
+    }
+
+    /**
+     * @return Authenticatable|User
+     */
+    protected function getUser(): User
+    {
+        return $this->auth->user();
     }
 }
