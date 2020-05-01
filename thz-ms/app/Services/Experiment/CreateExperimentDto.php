@@ -2,7 +2,7 @@
 
 namespace App\Services\Experiment;
 
-class CreateExperimentDto
+final class CreateExperimentDto
 {
     private int $systemId;
     private string $name;

@@ -7,7 +7,7 @@ namespace App\Http\Requests\Experiment;
 use App\Http\Requests\FormRequest;
 use App\Services\Experiment\CreateExperimentDto;
 
-class StoreExperimentRequest extends FormRequest
+final class StoreExperimentRequest extends FormRequest
 {
     public function rules(): array
     {
@@ -21,7 +21,7 @@ class StoreExperimentRequest extends FormRequest
     public function getDto(): CreateExperimentDto
     {
         return new CreateExperimentDto(
-            $this->input('system_id'),
+            (int) $this->input('system_id'),
             $this->input('name'),
             $this->input('description')
         );
