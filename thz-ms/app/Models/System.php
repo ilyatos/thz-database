@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Traits\SentenceAttributeSettable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -33,8 +34,25 @@ use Illuminate\Support\Carbon;
  * @method static Builder|System newQuery()
  * @method static Builder|System query()
  */
-class System extends Model
+final class System extends Model
 {
+    use SentenceAttributeSettable;
+
+    public function setNameAttribute(string $value): void
+    {
+        $this->setSentenceAttribute('name', $value);
+    }
+
+    public function setDescriptionAttribute(?string $value): void
+    {
+        $this->setSentenceAttribute('description', $value);
+    }
+
+    public function setManufacturerAttribute(string $value): void
+    {
+        $this->setSentenceAttribute('manufacturer', $value);
+    }
+
     public function getNameWithTypeAttribute(): string
     {
         return sprintf('%s (%s)', $this->name, $this->type->name);
