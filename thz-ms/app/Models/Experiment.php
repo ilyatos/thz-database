@@ -26,7 +26,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read Environment $environment
- * @property-read User $populator
+ * @property-read User $user
  * @property-read Research|null $research
  * @property-read Collection|Sample[] $samples
  * @property-read int|null $samples_count
@@ -49,7 +49,7 @@ class Experiment extends Model
     /**
      * @return BelongsTo|User
      */
-    public function populator(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
