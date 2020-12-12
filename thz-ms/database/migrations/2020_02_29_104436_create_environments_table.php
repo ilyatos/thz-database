@@ -25,7 +25,7 @@ class CreateEnvironmentsTable extends Migration
                 ->onDelete('cascade');
 
             $table->unsignedSmallInteger('temperature')->comment('Kelvin temperature');
-            $table->unsignedTinyInteger('humidity')->nullable()->comment('Humidity as a percentage');
+            $table->unsignedTinyInteger('humidity')->comment('Humidity as a percentage');
             $table->unsignedSmallInteger('pressure')->nullable()->comment('Atmospheric pressure as a mmHg');
             $table->timestamps();
         });

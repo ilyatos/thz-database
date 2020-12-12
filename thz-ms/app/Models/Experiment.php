@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Traits\SentenceAttributeSettable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -26,7 +27,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read Environment $environment
- * @property-read User $populator
+ * @property-read User $user
  * @property-read Research|null $research
  * @property-read Collection|Sample[] $samples
  * @property-read int|null $samples_count
@@ -36,8 +37,20 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Experiment newQuery()
  * @method static Builder|Experiment query()
  */
-class Experiment extends Model
+final class Experiment extends Model
 {
+    use SentenceAttributeSettable;
+
+    public function setNameAttribute(string $value): void
+    {
+        $this->setSentenceAttribute('name', $value);
+    }
+
+    public function setDescriptionAttribute(?string $value): void
+    {
+        $this->setSentenceAttribute('description', $value);
+    }
+
     /**
      * @return BelongsTo|Research
      */
@@ -49,7 +62,7 @@ class Experiment extends Model
     /**
      * @return BelongsTo|User
      */
-    public function populator(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

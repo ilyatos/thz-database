@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3.8"
 services:
   nginx:
     build: ./docker/nginx
@@ -9,7 +9,7 @@ services:
     links:
       - php
     ports:
-      - "8001:80"
+      - 8001:80
   php:
     build: ./docker/php
     volumes:
@@ -23,18 +23,19 @@ services:
       PHP_OPCACHE_ENABLE: 1
       PHP_OPCACHE_VALIDATE_TIMESTAMPS: 0
   db:
-    build: ./docker/postgres
+    image: postgres:13.0-alpine
+    restart: unless-stopped
     volumes:
       - ./.postgres:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - 5432:5432
     environment:
       POSTGRES_DB: thz
       POSTGRES_USER: thz
       POSTGRES_PASSWORD: secret
   redis:
-    build: ./docker/redis
+    image: redis:6.0-alpine
+    restart: unless-stopped
     volumes:
-      - ./.redis:/data
-    ports:
-      - "6380:6379"
+      - ./docker/redis/redis.conf:/etc/redis.conf
+      - ./.redis:/data:delegated

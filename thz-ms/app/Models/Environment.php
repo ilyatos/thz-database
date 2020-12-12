@@ -17,7 +17,7 @@ use Illuminate\Support\Carbon;
  * @property int $id
  * @property int $experiment_id
  * @property int $temperature Kelvin temperature
- * @property int|null $humidity Humidity as a percentage
+ * @property int $humidity Humidity as a percentage
  * @property int|null $pressure Atmospheric pressure as a mmHg
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -27,7 +27,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Environment newQuery()
  * @method static Builder|Environment query()
  */
-class Environment extends Model
+final class Environment extends Model
 {
     /**
      * @return BelongsTo|Experiment
